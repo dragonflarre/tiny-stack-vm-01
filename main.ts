@@ -16,43 +16,43 @@ const T = (op: number, im: number, pops: number, pushes: number): void => {
   PP[op] = pops;
   PS[op] = pushes;
 };
-T(0x00, 0, 0, 0); // HALT
-T(0x01, 1, 0, 1); // PUSH8
-T(0x02, 4, 0, 1); // PUSH32
-T(0x03, 0, 1, 0); // POP
-T(0x04, 0, 1, 2); // DUP
-T(0x05, 0, 2, 2); // SWAP
-T(0x06, 0, 2, 3); // OVER
-T(0x07, 0, 3, 3); // ROT
-T(0x10, 0, 2, 1); // ADD
-T(0x11, 0, 2, 1); // SUB
-T(0x12, 0, 2, 1); // MUL
-T(0x13, 0, 2, 1); // DIV
-T(0x14, 0, 2, 1); // MOD
-T(0x15, 0, 2, 1); // DIVU
-T(0x16, 0, 2, 1); // MODU
-T(0x17, 0, 1, 1); // NEG
-T(0x18, 0, 2, 1); // AND
-T(0x19, 0, 2, 1); // OR
-T(0x1a, 0, 2, 1); // XOR
-T(0x1b, 0, 1, 1); // NOT
-T(0x1c, 0, 2, 1); // SHL
-T(0x1d, 0, 2, 1); // SHR
-T(0x1e, 0, 2, 1); // SHRU
-T(0x20, 0, 2, 1); // EQ
-T(0x21, 0, 2, 1); // LT
-T(0x22, 0, 2, 1); // LTU
-T(0x30, 2, 0, 0); // JMP
-T(0x31, 2, 1, 0); // JZ
-T(0x32, 2, 1, 0); // JNZ
-T(0x33, 2, 0, 0); // CALL
-T(0x34, 0, 0, 0); // RET
-T(0x40, 0, 1, 1); // LOAD
-T(0x41, 0, 2, 0); // STORE
-T(0x50, 0, 1, 0); // PRINT
-T(0x51, 0, 1, 0); // PUTC
-T(0x52, 0, 0, 1); // IN
-T(0x53, 0, 1, 0); // EXIT
+T(0x00, 0, 0, 0);
+T(0x01, 1, 0, 1);
+T(0x02, 4, 0, 1);
+T(0x03, 0, 1, 0);
+T(0x04, 0, 1, 2);
+T(0x05, 0, 2, 2);
+T(0x06, 0, 2, 3);
+T(0x07, 0, 3, 3);
+T(0x10, 0, 2, 1);
+T(0x11, 0, 2, 1);
+T(0x12, 0, 2, 1);
+T(0x13, 0, 2, 1);
+T(0x14, 0, 2, 1);
+T(0x15, 0, 2, 1);
+T(0x16, 0, 2, 1);
+T(0x17, 0, 1, 1);
+T(0x18, 0, 2, 1);
+T(0x19, 0, 2, 1);
+T(0x1a, 0, 2, 1);
+T(0x1b, 0, 1, 1);
+T(0x1c, 0, 2, 1);
+T(0x1d, 0, 2, 1);
+T(0x1e, 0, 2, 1);
+T(0x20, 0, 2, 1);
+T(0x21, 0, 2, 1);
+T(0x22, 0, 2, 1);
+T(0x30, 2, 0, 0);
+T(0x31, 2, 1, 0);
+T(0x32, 2, 1, 0);
+T(0x33, 2, 0, 0);
+T(0x34, 0, 0, 0);
+T(0x40, 0, 1, 1);
+T(0x41, 0, 2, 0);
+T(0x50, 0, 1, 0);
+T(0x51, 0, 1, 0);
+T(0x52, 0, 0, 1);
+T(0x53, 0, 1, 0);
 
 function run(P: Buffer, inp: Buffer): { out: Buffer; exit: number } {
   const n = P.length;
@@ -221,8 +221,7 @@ function run(P: Buffer, inp: Buffer): { out: Buffer; exit: number } {
   }
 }
 
-// The driver: every instance in the input directory, answered in name order,
-// each in its own output directory, whatever its program does.
+// The driver: every instance in the input directory, answered in name order.
 const I = process.env.MAKEFUN_INPUT_DIR ?? '/input';
 const O = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
 for (const id of readdirSync(I).sort()) {
