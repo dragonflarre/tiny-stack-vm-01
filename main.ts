@@ -1,15 +1,13 @@
 // A tiny stack VM for make.fun's stack ISA (kit: generator/subject/ISA.md).
-// For every /input/<id> it runs program.bin on input.bin and writes the
-// program's exact output bytes and exit code to /output/<id>. Semantics are
-// the ISA's own: wrapping 32-bit arithmetic, a 256-value stack, 64 return
-// addresses, 256 words of memory, ten traps with their own exit codes, and
-// the 1,000,000-step and 65,536-byte output limits.
+// Runs every /input/<id>'s program.bin on its input.bin and writes the exact
+// output bytes and exit code to /output/<id>: wrapping 32-bit arithmetic, a
+// 256-value stack, 64 return addresses, 256 words of memory, ten traps with
+// their own exit codes, 1,000,000-step and 65,536-byte output limits.
 
 import { mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-// Per-opcode immediate length, pops and pushes; an immediate of -1 marks a
-// byte no opcode names (trap 5).
+// Per-opcode immediate length, pops, pushes; immediate -1 = illegal byte.
 const IM = new Int8Array(256).fill(-1);
 const PP = new Int8Array(256);
 const PS = new Int8Array(256);
